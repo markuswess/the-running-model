@@ -1,0 +1,27 @@
+[project]
+name = "the-running-model"
+version = "0.1.0"
+description = "Interactive models of endurance/running performance"
+readme = "README.md"
+authors = [
+    { name = "mw", email = "markus.wess@disroot.org" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "ngapp[dev]>=1.0.15",
+    "numpy>=2.5.4",
+    "plotly>=7.1.0",
+    "scipy>=1.18.1",
+]
+
+[project.scripts]
+the-running-model = "the_running_model.__main__:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
