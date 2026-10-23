@@ -8,15 +8,15 @@ from .richtext import RichText
 class TheRunningModel(App):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = Heading("Modelling HR response")
+        self.title = Heading("Modelling H response")
         self.plot = PlotlyComponent(id="plot").on_mounted(self.draw)
-        self.HR_inf = NumberInput(
-            ui_label="HR_inf",
+        self.H_inf = NumberInput(
+            ui_label="H_inf",
             ui_model_value=150,
             ui_debounce=300,
         ).on_update_model_value(self.draw)
-        self.HR_0 = NumberInput(
-            ui_label="HR_0",
+        self.H_0 = NumberInput(
+            ui_label="H_0",
             ui_model_value=60,
             ui_debounce=300,
         ).on_update_model_value(self.draw)
@@ -35,8 +35,8 @@ class TheRunningModel(App):
             Row(Heading("A first model", level=3)),
             Row(
                 Col(
-                    self.HR_inf,
-                    self.HR_0,
+                    self.H_inf,
+                    self.H_0,
                     self.tau,
                     self.T_end,
                     ui_style="flex: 0 0 180px",
@@ -49,34 +49,34 @@ class TheRunningModel(App):
             ),
             RichText(
                 r"Assuming a constant pace, the heart rate approaches "
-                r"$HR_\infty$ asymptotically with time constant $\tau$: "
-                r"$$HR(t) = HR_\infty - (HR_\infty - HR_0)\,e^{-t/\tau}$$"
+                r"$H_\infty$ asymptotically with time constant $\tau$: "
+                r"$$H(t) = H_\infty - (H_\infty - H_0)\,e^{-t/\tau}$$"
             ),
         )
 
     def draw(self):
         import plotly.graph_objects as go
 
-        HR_inf = self.HR_inf.ui_model_value
-        HR_0 = self.HR_0.ui_model_value
+        H_inf = self.H_inf.ui_model_value
+        H_0 = self.H_0.ui_model_value
         tau = self.tau.ui_model_value
         T_end = self.T_end.ui_model_value
-        if None in (HR_inf, HR_0, tau, T_end) or tau <= 0 or T_end <= 0:
+        if None in (H_inf, H_0, tau, T_end) or tau <= 0 or T_end <= 0:
             # keep showing the last valid curve while the user is editing
             return
 
-        HR_inf = float(HR_inf)
-        HR_0 = float(HR_0)
+        H_inf = float(H_inf)
+        H_0 = float(H_0)
         tau = float(tau)
         T_end = float(T_end)
         nr_points = 1000
         t = np.linspace(0, T_end, int(nr_points))
-        y = HR_inf - (HR_inf - HR_0) * np.exp(-t / tau)
+        y = H_inf - (H_inf - H_0) * np.exp(-t / tau)
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=t, y=y, mode="lines"))
         fig.update_layout(
-            title=f"Heart Rate curve HR_inf={HR_inf}, HR_0={HR_0}, tau={tau}",
+            title=f"Heart Rate curve H_inf={H_inf}, H_0={H_0}, tau={tau}",
             xaxis_title="t",
-            yaxis_title="HR",
+            yaxis_title="H",
         )
         self.plot.draw(fig)

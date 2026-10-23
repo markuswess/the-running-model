@@ -25,6 +25,6 @@ uv run python -m ngapp.cli.build_website -a the_running_model.appconfig
 
 ## The model so far
 
-Heart rate rises exponentially from `HR_0` towards `HR_inf` with time constant `tau`
-(`HR(t) = HR_inf - (HR_inf - HR_0) * exp(-t / tau)`), assuming a constant pace at
-which the runner would eventually settle at `HR_inf`.
+Heart rate rises exponentially from `H_0` towards `H_inf` with time constant `tau`
+(`H(t) = H_inf - (H_inf - H_0) * exp(-t / tau)`), assuming a constant pace at
+which the runner would eventually settle at `H_inf`.
