@@ -28,3 +28,8 @@ uv run python -m ngapp.cli.build_website -a the_running_model.appconfig
 Heart rate rises exponentially from `H_0` towards `H_inf` with time constant `tau`
 (`H(t) = H_inf - (H_inf - H_0) * exp(-t / tau)`), assuming a constant pace at
 which the runner would eventually settle at `H_inf`.
+
+`H_inf` can be a free parameter, follow the pace (`H_inf = H_0 + k_linear * v`,
+or a saturating variant), or drift upwards during a long run
+(`H_inf_drift(t, v) = H_inf(v) + beta * t`, cardiac drift). In the drift case the
+ODE is integrated numerically with fourth-order Runge-Kutta.
