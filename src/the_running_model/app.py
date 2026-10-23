@@ -45,7 +45,7 @@ class TheRunningModel(App):
                     " align-items: flex-start"
                 ),
             ),
-            Row("Assuming constant pace, at which the runner runs with HR_inf"),
+            Row("Assuming constant pace, at which the runner runs asymptotically with HR_inf"),
         )
 
     def draw(self):
