@@ -19,6 +19,7 @@ uv run python -m ngapp.cli.build_website -a the_running_model.appconfig
 ## Layout
 
 - `src/the_running_model/app.py` — the app (`TheRunningModel`)
+- `src/the_running_model/richtext.py` — `RichText` component rendering `$...$` / `$$...$$` math via KaTeX
 - `src/the_running_model/appconfig.py` — app metadata used by ngapp
 - `.github/workflows/deploy.yml` — builds and deploys the static app to GitHub Pages
 

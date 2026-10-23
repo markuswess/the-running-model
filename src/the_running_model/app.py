@@ -2,6 +2,8 @@ import numpy as np
 from ngapp.app import App
 from ngapp.components import *
 
+from .richtext import RichText
+
 
 class TheRunningModel(App):
     def __init__(self, *args, **kwargs):
@@ -45,7 +47,11 @@ class TheRunningModel(App):
                     " align-items: flex-start"
                 ),
             ),
-            Row("Assuming constant pace, at which the runner runs asymptotically with HR_inf"),
+            RichText(
+                r"Assuming a constant pace, the heart rate approaches "
+                r"$HR_\infty$ asymptotically with time constant $\tau$: "
+                r"$$HR(t) = HR_\infty - (HR_\infty - HR_0)\,e^{-t/\tau}$$"
+            ),
         )
 
     def draw(self):
