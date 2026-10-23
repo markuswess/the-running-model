@@ -8,6 +8,6 @@ config = AppConfig(
     name="the running model",
     version=__version__,
     python_class=TheRunningModel,
-    frontend_pip_dependencies=[],
+    frontend_pip_dependencies=["plotly>=7.1.0"],
     description=_DESCRIPTION,
 )
